@@ -146,4 +146,28 @@ nav span {
 }
 
 
+#logo {
+  color: #6282b0; /* default */
+  width: 220px;
+  height: auto;
+}
+
+/* Control SVG size */
+#logo object {
+  width: 100%;
+  height: auto;
+}
+
+#logo {
+  transition: color 1.2s ease;
+}
+
+/* Example states */
+body.dark #logo {
+  color: #ffffff;
+}
+
+body.light #logo {
+  color: #6282b0;
+}
 
