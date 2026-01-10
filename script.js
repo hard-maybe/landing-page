@@ -24,4 +24,5 @@ root.style.setProperty('--ui-color', uiColors[index]);
 setInterval(() => {
   index = (index + 1) % uiColors.length;
   root.style.setProperty('--ui-color', uiColors[index]);
+  }, 1200); // delay in ms
 }, 8000);
