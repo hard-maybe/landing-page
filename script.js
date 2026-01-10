@@ -38,19 +38,30 @@ setInterval(() => {
 }, 6000);
 
 
-const backgrounds = document.querySelectorAll('.bg');
+// sync UI color to active background
+const bgElements = document.querySelectorAll('.bg');
+const root = document.documentElement;
 
-let lastColor = null;
+function updateUIColor() {
+  let activeBg = null;
 
-setInterval(() => {
-  backgrounds.forEach(bg => {
+  bgElements.forEach(bg => {
     const opacity = parseFloat(getComputedStyle(bg).opacity);
-    if (opacity > 0.5) {
-      const color = bg.dataset.color;
-      if (color && color !== lastColor) {
-        document.documentElement.style.setProperty('--ui-color', color);
-        lastColor = color;
-      }
-    }
+    if (opacity > 0.5) activeBg = bg;
   });
-}, 500);
+
+  if (!activeBg) return;
+
+  // Manual mapping (simple + reliable)
+  if (activeBg.classList.contains('bg1') ||
+      activeBg.classList.contains('bg3') ||
+      activeBg.classList.contains('bg7')) {
+    root.style.setProperty('--ui-color', '#ffffff');
+  } else {
+    root.style.setProperty('--ui-color', '#6282B0');
+  }
+}
+
+// run every second (cheap + stable)
+setInterval(updateUIColor, 1000);
+
