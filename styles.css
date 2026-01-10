@@ -27,11 +27,14 @@ html, body {
 }
 
 .panel {
+  position: absolute;
+  top: 100%;              /* sits below nav */
+  margin-top: 1.6rem;     /* adjust spacing here only */
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
   width: min(520px, 80vw);
-  margin: 1.75rem auto 0; /* distance from nav — tweak THIS */
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-8px);
   transition: opacity 0.4s ease, transform 0.6s ease;
   z-index: 3;
 }
@@ -39,8 +42,9 @@ html, body {
 .panel.is-open {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
+
 
 
 /* Title (temporary stand-in for logo) */
