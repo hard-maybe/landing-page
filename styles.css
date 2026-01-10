@@ -258,13 +258,15 @@ nav a.is-active {
   font-size: 18px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: color 3.5s ease;
+  color: inherit;
+  transition: none;
 }
 
 .about-inner p {
   font-size: 14px;
   line-height: 1.6;
-  transition: color 3.5s ease;
+  color: inherit;
+  transition: none;
 }
 
 .about-inner {
