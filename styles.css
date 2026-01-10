@@ -207,4 +207,10 @@ nav span {
   line-height: 1.6;
 }
 
+@media (hover: hover) {
+  #about-toggle:hover ~ #about-panel {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
 
