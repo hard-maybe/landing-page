@@ -41,18 +41,16 @@ updateUIColorByIndex(index);
 
 
 
+const root = document.documentElement;
 
 function colorForIndex(i) {
-  // light images → dark UI
+  // Light images → dark UI
   if ([0, 2, 6].includes(i)) {
     return '#ffffff';
   }
-  // dark images → light UI
+  // Dark images → light UI
   return '#6282B0';
 }
-
-
-const root = document.documentElement;
 
 function updateUIColorByIndex(i) {
   root.style.setProperty('--ui-color', colorForIndex(i));
