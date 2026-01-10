@@ -77,6 +77,14 @@ nav span {
 .bg2 { background-image: url("images/bg2.jpg"); }
 .bg3 { background-image: url("images/bg3.jpg"); }
 .bg4 { background-image: url("images/bg4.jpg"); }
+.bg5 { background-image: url("images/bg5.jpg"); }
+.bg6 { background-image: url("images/bg6.jpg"); }
+.bg7 { background-image: url("images/bg7.jpg"); }
+.bg8 { background-image: url("images/bg8.jpg"); }
+.bg9 { background-image: url("images/bg9.jpg"); }
+.bg10 { background-image: url("images/bg410.jpg"); }
+.bg11 { background-image: url("images/bg411.jpg"); }
+.bg12 { background-image: url("images/bg412.jpg"); }
 
 
 /* Animation */
@@ -92,7 +100,15 @@ nav span {
   /* Fading layers */
   .bg2,
   .bg3,
-  .bg4 {
+  .bg4,
+  .bg5,
+  .bg6,
+  .bg7,
+  .bg8,
+  .bg9,
+  .bg10,
+  .bg11,
+  .bg12 {
     animation:
       fade 24s infinite,
       drift 90s ease-in-out infinite;
@@ -102,6 +118,14 @@ nav span {
   .bg2 { animation-delay: 6s,  -20s; }
   .bg3 { animation-delay: 12s, -40s; }
   .bg4 { animation-delay: 18s, -60s; }
+  .bg5 { animation-delay: 24s, -80s; }
+  .bg6 { animation-delay: 30s, -110s; }
+  .bg7 { animation-delay: 36s, -120s; }
+  .bg8 { animation-delay: 42s, -140s; }
+  .bg9 { animation-delay: 48s, -160s; }
+  .bg10 { animation-delay: 54s, -180s; }
+  .bg11 { animation-delay: 60s, -200s; }
+  .bg12 { animation-delay: 66s, -220s; }
 }
 
 
