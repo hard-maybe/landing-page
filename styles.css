@@ -252,6 +252,9 @@ nav a.is-active {
     transform: translateZ(0);
   will-change: color;
 
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
 
 }
 
