@@ -226,35 +226,29 @@ nav span {
   line-height: 1.6;
 }
 
-.about-box {
+.about-inner {
   position: relative;
-  margin-top: 24px;
-  padding: 20px 24px;
-  max-width: 420px;
-
-  background: rgba(255, 255, 255, 0.18); /* darker frost */
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  border-radius: 14px;
+  max-width: 520px;
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(20, 20, 20, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: var(--ui-color);
-
+  text-align: left;
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.12);
-
-  animation: float 16s ease-in-out infinite;
-
+    0 20px 60px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
   overflow: hidden;
 }
 
-.about-box::before {
+/* glass shine */
+.about-inner::before {
   content: "";
   position: absolute;
   inset: 0;
-
   border-radius: inherit;
   padding: 1px;
-
   background:
     linear-gradient(
       120deg,
@@ -264,21 +258,20 @@ nav span {
       rgba(255,255,255,0.6) 55%,
       transparent 70%
     );
-
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-
   opacity: 0;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .about-box::before {
+  .about-inner::before {
     animation: glass-glint 18s ease-in-out infinite;
   }
 }
+
 
 @keyframes glass-glint {
   0% {
@@ -302,27 +295,6 @@ nav span {
 }
 
 
-@media (hover: hover) {
-  #about-toggle:hover ~ #about-panel {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-.about-box {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
-}
-
-.about-box.is-open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
 
 
 .about-close {
