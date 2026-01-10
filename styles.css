@@ -62,82 +62,43 @@ nav span {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-  animation: fade 24s infinite;
 }
 
+/* Images */
+.bg1 { background-image: url("images/bg1.jpg"); }
+.bg2 { background-image: url("images/bg2.jpg"); }
+.bg3 { background-image: url("images/bg3.jpg"); }
+.bg4 { background-image: url("images/bg4.jpg"); }
 
-.bg1 {
-  background-image: url("images/bg1.jpg");
-  animation-delay: 0s;
-}
-
-.bg2 {
-  background-image: url("images/bg2.jpg");
-  animation-delay: 6s, -15s;
-}
-
-.bg3 {
-  background-image: url("images/bg3.jpg");
-  animation-delay: 12s, -30s;
-}
-
-.bg4 {
-  background-image: url("images/bg4.jpg");
-  animation-delay: 18s, -45s;
-}
-
-@keyframes fade {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  30%  { opacity: 1; }
-  40%  { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-.grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.2;
-  background-image:
-    repeating-radial-gradient(
-      circle at 0 0,
-      rgba(255,255,255,0.05),
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px,
-      transparent 2px
-    );
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .grain {
-    animation: grainShift 8s steps(10) infinite;
-  }
-}
-
-@keyframes grainShift {
-  0%   { transform: translate(0, 0); }
-  20%  { transform: translate(-1%, 1%); }
-  40%  { transform: translate(1%, -1%); }
-  60%  { transform: translate(-1%, -1%); }
-  80%  { transform: translate(1%, 1%); }
-  100% { transform: translate(0, 0); }
-}
-
+/* Animation */
 @media (prefers-reduced-motion: no-preference) {
   .bg {
     animation:
       fade 24s infinite,
-      drift 60s ease-in-out infinite;
+      drift 90s ease-in-out infinite;
     transform: scale(1.02);
   }
+
+  .bg1 { animation-delay: 0s, 0s; }
+  .bg2 { animation-delay: 6s, -20s; }
+  .bg3 { animation-delay: 12s, -40s; }
+  .bg4 { animation-delay: 18s, -60s; }
 }
 
+/* FADE — NO GAPS */
+@keyframes fade {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }
+  33%  { opacity: 1; }
+  41%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* MICRO PARALLAX */
 @keyframes drift {
   0%   { transform: scale(1.02) translate(0, 0); }
-  25%  { transform: scale(1.02) translate(1%, -1%); }
-  50%  { transform: scale(1.02) translate(-1%, 1%); }
-  75%  { transform: scale(1.02) translate(1%, 1%); }
+  25%  { transform: scale(1.02) translate(0.8%, -0.8%); }
+  50%  { transform: scale(1.02) translate(-0.8%, 0.8%); }
+  75%  { transform: scale(1.02) translate(0.8%, 0.8%); }
   100% { transform: scale(1.02) translate(0, 0); }
 }
