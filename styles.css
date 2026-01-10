@@ -147,6 +147,11 @@ nav span {
   100% { transform: scale(1.02) translate(0, 0); }
 }
 
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
 
 
 
@@ -162,22 +167,25 @@ nav span {
 
 
 #about-panel {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  top: calc(50% + 48px); /* sits under logo + nav */
+  left: 50%;
+  transform: translateX(-50%);
 
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease,
+  transform 0.6s ease;
+  transform: translateX(-50%) translateY(-8px);
 
   z-index: 3;
 }
 
+
 #about-panel.active {
   opacity: 1;
   pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 
 .about-inner {
@@ -185,15 +193,20 @@ nav span {
   padding: 32px;
   border-radius: 16px;
 
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(20, 20, 20, 0.35); /* darker frost */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
   color: var(--ui-color);
   text-align: left;
 
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+
+  animation: float 10s ease-in-out infinite;
 }
+
 
 .about-inner h2 {
   margin-top: 0;
