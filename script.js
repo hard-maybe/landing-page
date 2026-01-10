@@ -31,6 +31,7 @@ const aboutLink = document.querySelector('[data-about]');
 const aboutPanel = document.getElementById('about-panel');
 const aboutInner = aboutPanel.querySelector('.about-inner');
 const aboutClose = aboutPanel.querySelector('.about-close');
+const navLinks = document.querySelectorAll('nav a:not([data-about])');
 
 function openAbout() {
   aboutPanel.classList.add('is-open');
@@ -40,28 +41,38 @@ function closeAbout() {
   aboutPanel.classList.remove('is-open');
 }
 
-/* Open */
+function toggleAbout() {
+  aboutPanel.classList.toggle('is-open');
+}
+
+/* ABOUT link toggles */
 aboutLink.addEventListener('click', (e) => {
   e.preventDefault();
-  openAbout();
+  toggleAbout();
 });
 
 /* Close button */
 aboutClose.addEventListener('click', closeAbout);
 
-/* ESC key */
+/* Click outside panel */
+document.addEventListener('click', (e) => {
+  if (
+    aboutPanel.classList.contains('is-open') &&
+    !aboutInner.contains(e.target) &&
+    !aboutLink.contains(e.target)
+  ) {
+    closeAbout();
+  }
+});
+
+/* Escape key */
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeAbout();
   }
 });
 
-/* Click outside panel */
-document.addEventListener('click', (e) => {
-  if (!aboutPanel.classList.contains('is-open')) return;
-
-  if (!aboutInner.contains(e.target) && !aboutLink.contains(e.target)) {
-    closeAbout();
-  }
+/* Other nav links close it */
+navLinks.forEach(link => {
+  link.addEventListener('click', closeAbout);
 });
-
