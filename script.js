@@ -30,7 +30,6 @@ setInterval(() => {
 /* ==========
    PANEL SETUP
    ========== */
-
 const panels = [
   {
     link: document.querySelector('[data-about]'),
@@ -47,7 +46,6 @@ const navLinks = document.querySelectorAll('nav a');
 /* ==========
    HELPERS
    ========== */
-
 function openPanel(target) {
   panels.forEach(({ link, panel }) => {
     const isTarget = panel === target;
@@ -64,52 +62,51 @@ function closeAllPanels() {
 }
 
 function togglePanel(target) {
-  const isOpen = target.classList.contains('is-open');
-  if (isOpen) {
-    closeAllPanels();
-  } else {
-    openPanel(target);
-  }
+  target.classList.contains('is-open')
+    ? closeAllPanels()
+    : openPanel(target);
 }
 
 /* ==========
    LINK CLICKS
    ========== */
-
 panels.forEach(({ link, panel }) => {
+  if (!link || !panel) return;
+
   link.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     togglePanel(panel);
   });
 
   const closeBtn = panel.querySelector('.panel-close');
   if (closeBtn) {
-    closeBtn.addEventListener('click', closeAllPanels);
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAllPanels();
+    });
+  }
+
+  /* 🔒 CRITICAL FIX:
+     Prevent clicks INSIDE panel from bubbling */
+  const inner = panel.querySelector('.panel-inner');
+  if (inner) {
+    inner.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
   }
 });
 
 /* ==========
    CLICK OUTSIDE
    ========== */
-
-document.addEventListener('click', (e) => {
-  const clickedInsidePanel = panels.some(({ panel }) =>
-    panel.querySelector('.panel-inner')?.contains(e.target)
-  );
-
-  const clickedPanelLink = panels.some(({ link }) =>
-    link.contains(e.target)
-  );
-
-  if (!clickedInsidePanel && !clickedPanelLink) {
-    closeAllPanels();
-  }
+document.addEventListener('click', () => {
+  closeAllPanels();
 });
 
 /* ==========
    ESC KEY
    ========== */
-
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeAllPanels();
@@ -119,7 +116,6 @@ document.addEventListener('keydown', (e) => {
 /* ==========
    OTHER NAV LINKS
    ========== */
-
 navLinks.forEach(link => {
   if (![...panels].some(p => p.link === link)) {
     link.addEventListener('click', closeAllPanels);
