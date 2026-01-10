@@ -34,34 +34,26 @@ setInterval(() => {
   nextBg.style.opacity = 1;
   currentBg.style.opacity = 0;
 
+updateUIColorByIndex(index);
+  
   showingFirst = !showingFirst;
 }, 6000);
 
 
-// sync UI color to active background
-const bgElements = document.querySelectorAll('.bg');
-const root = document.documentElement;
 
-function updateUIColor() {
-  let activeBg = null;
 
-  bgElements.forEach(bg => {
-    const opacity = parseFloat(getComputedStyle(bg).opacity);
-    if (opacity > 0.5) activeBg = bg;
-  });
-
-  if (!activeBg) return;
-
-  // Manual mapping (simple + reliable)
-  if (activeBg.classList.contains('bg1') ||
-      activeBg.classList.contains('bg3') ||
-      activeBg.classList.contains('bg7')) {
-    root.style.setProperty('--ui-color', '#ffffff');
-  } else {
-    root.style.setProperty('--ui-color', '#6282B0');
+function colorForIndex(i) {
+  // light images → dark UI
+  if ([0, 2, 6].includes(i)) {
+    return '#ffffff';
   }
+  // dark images → light UI
+  return '#6282B0';
 }
 
-// run every second (cheap + stable)
-setInterval(updateUIColor, 1000);
 
+const root = document.documentElement;
+
+function updateUIColorByIndex(i) {
+  root.style.setProperty('--ui-color', colorForIndex(i));
+}
