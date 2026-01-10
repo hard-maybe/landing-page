@@ -1,35 +1,34 @@
-// UI colours mapped to background order (bg1 → bg12)
+// ==========================
+// UI COLOUR CYCLING
+// ==========================
 const uiColors = [
-  '#fdf9ce', // bg1
-  '#6282B0', // bg2
-  '#efeee1', // bg3
-  '#5fc29e', // bg4
-  '#6282B0', // bg5
-  '#5fc29e', // bg6
-  '#efeee1', // bg7
-  '#5fc29e', // bg8
-  '#efeee1', // bg9
-  '#fdf9ce', // bg10
-  '#fdf9ce', // bg11
-  '#6282B0'  // bg12
+  '#fdf9ce',
+  '#6282B0',
+  '#efeee1',
+  '#5fc29e',
+  '#6282B0',
+  '#5fc29e',
+  '#efeee1',
+  '#5fc29e',
+  '#efeee1',
+  '#fdf9ce',
+  '#fdf9ce',
+  '#6282B0'
 ];
 
 const root = document.documentElement;
 let index = 0;
 
-// initial colour (matches bg1)
 root.style.setProperty('--ui-color', uiColors[index]);
 
-// advance colour every 8s (matches your CSS animation-delay)
 setInterval(() => {
   index = (index + 1) % uiColors.length;
   root.style.setProperty('--ui-color', uiColors[index]);
 }, 7300);
 
-
-/* ==========
-   PANEL SETUP
-   ========== */
+// ==========================
+// PANEL SETUP
+// ==========================
 const panels = [
   {
     link: document.querySelector('[data-about]'),
@@ -43,12 +42,12 @@ const panels = [
 
 const navLinks = document.querySelectorAll('nav a');
 
-/* ==========
-   HELPERS
-   ========== */
-function openPanel(target) {
+// ==========================
+// HELPERS
+// ==========================
+function openPanel(targetPanel) {
   panels.forEach(({ link, panel }) => {
-    const isTarget = panel === target;
+    const isTarget = panel === targetPanel;
     panel.classList.toggle('is-open', isTarget);
     link.classList.toggle('is-active', isTarget);
   });
@@ -61,15 +60,15 @@ function closeAllPanels() {
   });
 }
 
-function togglePanel(target) {
-  target.classList.contains('is-open')
+function togglePanel(targetPanel) {
+  targetPanel.classList.contains('is-open')
     ? closeAllPanels()
-    : openPanel(target);
+    : openPanel(targetPanel);
 }
 
-/* ==========
-   LINK CLICKS
-   ========== */
+// ==========================
+// NAV LINK CLICKS
+// ==========================
 panels.forEach(({ link, panel }) => {
   if (!link || !panel) return;
 
@@ -87,8 +86,7 @@ panels.forEach(({ link, panel }) => {
     });
   }
 
-  /* 🔒 CRITICAL FIX:
-     Prevent clicks INSIDE panel from bubbling */
+  // 🔒 Prevent clicks inside the panel from closing it
   const inner = panel.querySelector('.panel-inner');
   if (inner) {
     inner.addEventListener('click', (e) => {
@@ -97,37 +95,37 @@ panels.forEach(({ link, panel }) => {
   }
 });
 
-/* ==========
-   CLICK OUTSIDE
-   ========== */
+// ==========================
+// CLICK OUTSIDE PANELS
+// ==========================
 document.addEventListener('click', (e) => {
-  const clickedInsidePanel = panels.some(({ panel }) =>
-    panel?.contains(e.target)
+  const clickedPanel = panels.some(({ panel }) =>
+    panel.contains(e.target)
   );
   const clickedPanelLink = panels.some(({ link }) =>
-    link?.contains(e.target)
+    link.contains(e.target)
   );
 
-  if (!clickedInsidePanel && !clickedPanelLink) {
+  if (!clickedPanel && !clickedPanelLink) {
     closeAllPanels();
   }
 });
 
-
-/* ==========
-   ESC KEY
-   ========== */
+// ==========================
+// ESC KEY
+// ==========================
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeAllPanels();
   }
 });
 
-/* ==========
-   OTHER NAV LINKS
-   ========== */
+// ==========================
+// OTHER NAV LINKS
+// ==========================
 navLinks.forEach(link => {
-  if (![...panels].some(p => p.link === link)) {
+  const isPanelLink = panels.some(p => p.link === link);
+  if (!isPanelLink) {
     link.addEventListener('click', closeAllPanels);
   }
 });
