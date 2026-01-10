@@ -43,6 +43,7 @@ nav a {
   color: var(--ui-color);
   text-decoration: none;
   margin: 0 6px;
+  transition: color 3.5s ease;
 }
 
 nav span {
@@ -156,5 +157,5 @@ nav span {
 
 #logo {
   color: var(--ui-color);
-  transition: color 1.2s ease;
+  transition: color 3.5s ease;
 }
