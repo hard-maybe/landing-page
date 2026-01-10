@@ -73,17 +73,17 @@ nav span {
 
 .bg2 {
   background-image: url("images/bg2.jpg");
-  animation-delay: 6s;
+  animation-delay: 6s, -15s;
 }
 
 .bg3 {
   background-image: url("images/bg3.jpg");
-  animation-delay: 12s;
+  animation-delay: 12s, -30s;
 }
 
 .bg4 {
   background-image: url("images/bg4.jpg");
-  animation-delay: 18s;
+  animation-delay: 18s, -45s;
 }
 
 @keyframes fade {
@@ -125,3 +125,19 @@ nav span {
   100% { transform: translate(0, 0); }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .bg {
+    animation:
+      fade 24s infinite,
+      drift 60s ease-in-out infinite;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes drift {
+  0%   { transform: scale(1.02) translate(0, 0); }
+  25%  { transform: scale(1.02) translate(1%, -1%); }
+  50%  { transform: scale(1.02) translate(-1%, 1%); }
+  75%  { transform: scale(1.02) translate(1%, 1%); }
+  100% { transform: scale(1.02) translate(0, 0); }
+}
