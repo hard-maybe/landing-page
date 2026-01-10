@@ -99,7 +99,7 @@ nav span {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.12;
+  opacity: 0.18;
   background-image:
     repeating-radial-gradient(
       circle at 0 0,
