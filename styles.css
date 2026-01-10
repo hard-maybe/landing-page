@@ -174,7 +174,7 @@ nav span {
 
 #about-panel {
   position: absolute;
-  top: calc(50% + 48px); /* sits under logo + nav */
+  top: calc(50% + 58px); /* sits under logo + nav */
   left: 50%;
   transform: translateX(-50%);
 
@@ -210,7 +210,7 @@ nav span {
     0 20px 60px rgba(0,0,0,0.35),
     inset 0 0 0 1px rgba(255,255,255,0.08);
 
-  animation: float 10s ease-in-out infinite;
+
 }
 
 
