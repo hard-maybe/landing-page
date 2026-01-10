@@ -40,7 +40,7 @@ setInterval(() => {
 
 const bgColors = [
   "#6282b0", // bg1
-  "#6282b0", // bg2
+  "#ffffff", // bg2
   "#6282b0", // bg3
   "#6282b0", // bg4
   "#6282b0", // bg5
