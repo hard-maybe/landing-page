@@ -27,21 +27,41 @@ setInterval(() => {
 }, 7300);
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const aboutLink = document.querySelector('[data-about]');
-  const aboutPanel = document.getElementById('about-panel');
-  const aboutClose = document.querySelector('.about-close');
+const aboutLink = document.querySelector('[data-about]');
+const aboutPanel = document.getElementById('about-panel');
+const aboutInner = aboutPanel.querySelector('.about-inner');
+const aboutClose = aboutPanel.querySelector('.about-close');
 
-  if (!aboutLink || !aboutPanel || !aboutClose) return;
+function openAbout() {
+  aboutPanel.classList.add('is-open');
+}
 
-  aboutLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    aboutPanel.classList.add('is-open');
-  });
+function closeAbout() {
+  aboutPanel.classList.remove('is-open');
+}
 
-  aboutClose.addEventListener('click', () => {
-    aboutPanel.classList.remove('is-open');
-  });
+/* Open */
+aboutLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  openAbout();
 });
 
+/* Close button */
+aboutClose.addEventListener('click', closeAbout);
+
+/* ESC key */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeAbout();
+  }
+});
+
+/* Click outside panel */
+document.addEventListener('click', (e) => {
+  if (!aboutPanel.classList.contains('is-open')) return;
+
+  if (!aboutInner.contains(e.target) && !aboutLink.contains(e.target)) {
+    closeAbout();
+  }
+});
 
