@@ -36,3 +36,41 @@ setInterval(() => {
 
   showingFirst = !showingFirst;
 }, 6000);
+
+
+const bgColors = [
+  "#6282b0", // bg1
+  "#6282b0", // bg2
+  "#6282b0", // bg3
+  "#6282b0", // bg4
+  "#6282b0", // bg5
+  "#6282b0", // bg6
+  "#6282b0", // bg7
+  "#6282b0", // bg8
+  "#6282b0", // bg9
+  "#6282b0", // bg10
+  "#6282b0", // bg11
+  "#6282b0"  // bg12
+];
+
+const totalImages = 12;
+const interval = 6000; // MUST match your fade spacing
+
+let current = 0;
+
+function updateUIColor() {
+  document.documentElement.style.setProperty(
+    "--ui-color",
+    bgColors[current]
+  );
+
+  current = (current + 1) % totalImages;
+}
+
+// initial
+updateUIColor();
+
+// sync with background cycle
+setInterval(updateUIColor, interval);
+
+
