@@ -203,7 +203,7 @@ nav a {
 /* Active / open nav item */
 nav a.is-active {
   font-family: "Manufacturing Consent", sans-serif;
-  font-size: 13px;          /* subtle bump */
+  font-size: 20px;          /* subtle bump */
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: lowercase;
