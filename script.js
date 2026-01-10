@@ -1,16 +1,16 @@
 // UI colours mapped to background order (bg1 → bg12)
 const uiColors = [
-  '#ffffff', // bg1
+  '#fdf9ce', // bg1
   '#6282B0', // bg2
-  '#ffffff', // bg3
-  '#6282B0', // bg4
+  '#efeee1', // bg3
+  '#5fc29e', // bg4
   '#6282B0', // bg5
-  '#6282B0', // bg6
-  '#ffffff', // bg7
-  '#6282B0', // bg8
-  '#6282B0', // bg9
-  '#6282B0', // bg10
-  '#6282B0', // bg11
+  '#5fc29e', // bg6
+  '#efeee1', // bg7
+  '#5fc29e', // bg8
+  '#efeee1', // bg9
+  '#fdf9ce', // bg10
+  '#fdf9ce', // bg11
   '#6282B0'  // bg12
 ];
 
