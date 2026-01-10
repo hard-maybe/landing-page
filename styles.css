@@ -78,22 +78,30 @@ nav span {
 
 /* Animation */
 @media (prefers-reduced-motion: no-preference) {
-  .bg {
+
+  /* Base background — always visible */
+  .bg1 {
+    opacity: 1;
+    animation: drift 90s ease-in-out infinite;
+    transform: scale(1.02);
+  }
+
+  /* Fading layers */
+  .bg2,
+  .bg3,
+  .bg4 {
     animation:
       fade 24s infinite,
       drift 90s ease-in-out infinite;
     transform: scale(1.02);
+    opacity: 0;
   }
 
-  .bg1 {
-  opacity: 1;
-  animation-delay: 0s, 0s;
-}
-
-  .bg2 { animation-delay: 6s, -20s; }
+  .bg2 { animation-delay: 6s,  -20s; }
   .bg3 { animation-delay: 12s, -40s; }
   .bg4 { animation-delay: 18s, -60s; }
 }
+
 
 /* FADE — NO GAPS */
 @keyframes fade {
