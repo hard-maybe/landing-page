@@ -69,82 +69,12 @@ nav span {
   backface-visibility: hidden;
 }
 
-/* Images */
-.bg1 { background-image: url("images/bg1.jpg"); }
-.bg2 { background-image: url("images/bg2.jpg"); }
-.bg3 { background-image: url("images/bg3.jpg"); }
-.bg4 { background-image: url("images/bg4.jpg"); }
-.bg5 { background-image: url("images/bg5.jpg"); }
-.bg6 { background-image: url("images/bg6.jpg"); }
-.bg7 { background-image: url("images/bg7.jpg"); }
-.bg8 { background-image: url("images/bg8.jpg"); }
-.bg9 { background-image: url("images/bg9.jpg"); }
-.bg10 { background-image: url("images/bg10.jpg"); }
-.bg11 { background-image: url("images/bg11.jpg"); }
-.bg12 { background-image: url("images/bg12.jpg"); }
-
-
-/* Animation */
-@media (prefers-reduced-motion: no-preference) {
-
-  /* Base image — always visible */
-  .bg1 {
-  opacity: 1;
-  animation: drift 96s ease-in-out infinite;
-  transform: scale(1.02);
-}
-
-  /* Fading layers */
-  .bg2,
-  .bg3,
-  .bg4,
-  .bg5,
-  .bg6,
-  .bg7,
-  .bg8,
-  .bg9,
-  .bg10,
-  .bg11,
-  .bg12 {
-    animation:
-      fade 96s infinite,
-      drift 96s ease-in-out infinite;
-    transform: scale(1.02);
-  }
-
- .bg2  { animation-delay: 8s,  -8s; }
-  .bg3  { animation-delay: 16s, -16s; }
-  .bg4  { animation-delay: 24s, -24s; }
-  .bg5  { animation-delay: 32s, -32s; }
-  .bg6  { animation-delay: 40s, -40s; }
-  .bg7  { animation-delay: 48s, -48s; }
-  .bg8  { animation-delay: 56s, -56s; }
-  .bg9  { animation-delay: 64s, -64s; }
-  .bg10 { animation-delay: 72s, -72s; }
-  .bg11 { animation-delay: 80s, -80s; }
-  .bg12 { animation-delay: 88s, -88s; }
-}
 
 
 
-/* FADE — NO GAPS */
-@keyframes fade {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  70%  { opacity: 1; }
-  90%  { opacity: 0; }
-  100% { opacity: 0; }
-}
 
 
-/* MICRO PARALLAX */
-@keyframes drift {
-  0%   { transform: scale(1.02) translate(0, 0); }
-  25%  { transform: scale(1.02) translate(0.8%, -0.8%); }
-  50%  { transform: scale(1.02) translate(-0.8%, 0.8%); }
-  75%  { transform: scale(1.02) translate(0.8%, 0.8%); }
-  100% { transform: scale(1.02) translate(0, 0); }
-}
+
 
 
 
