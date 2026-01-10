@@ -34,7 +34,7 @@ html, body {
 .panel {
   position: absolute;
   top: 100%;
-  margin-top: 1.6rem;
+  margin-top: 0.1rem;
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
   width: min(520px, 80vw);
