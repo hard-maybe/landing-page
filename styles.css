@@ -92,10 +92,10 @@ nav span {
 
   /* Base image — always visible */
   .bg1 {
-    opacity: 1;
-    animation: drift 90s ease-in-out infinite;
-    transform: scale(1.02);
-  }
+  opacity: 1;
+  animation: drift 97s ease-in-out infinite;
+  transform: scale(1.02);
+}
 
   /* Fading layers */
   .bg2,
@@ -115,17 +115,18 @@ nav span {
     transform: scale(1.02);
   }
 
-  .bg2 { animation-delay: 6s,  -10s; }
-  .bg3 { animation-delay: 12s, -20s; }
-  .bg4 { animation-delay: 18s, -30s; }
-  .bg5 { animation-delay: 24s, -40s; }
-  .bg6 { animation-delay: 30s, -50s; }
-  .bg7 { animation-delay: 36s, -60s; }
-  .bg8 { animation-delay: 42s, -70s; }
-  .bg9 { animation-delay: 48s, -80s; }
-  .bg10 { animation-delay: 54s, -90s; }
-  .bg11 { animation-delay: 60s, -100s; }
-  .bg12 { animation-delay: 66s, -110s; }
+  .bg1  { animation-delay: 0s,   0s; }
+  .bg2  { animation-delay: 10s, -10s; }
+  .bg3  { animation-delay: 20s, -20s; }
+  .bg4  { animation-delay: 30s, -30s; }
+  .bg5  { animation-delay: 40s, -40s; }
+  .bg6  { animation-delay: 50s, -50s; }
+  .bg7  { animation-delay: 60s, -60s; }
+  .bg8  { animation-delay: 70s, -70s; }
+  .bg9  { animation-delay: 80s, -80s; }
+  .bg10 { animation-delay: 90s, -90s; }
+  .bg11 { animation-delay: 100s, -100s; }
+  .bg12 { animation-delay: 110s, -110s; }
 }
 
 
@@ -133,11 +134,12 @@ nav span {
 /* FADE — NO GAPS */
 @keyframes fade {
   0%   { opacity: 0; }
-  12%   { opacity: 1; }
-  38%  { opacity: 1; }
-  50%  { opacity: 0; }
+  8%   { opacity: 1; }
+  75%  { opacity: 1; }
+  92%  { opacity: 0; }
   100% { opacity: 0; }
 }
+
 
 /* MICRO PARALLAX */
 @keyframes drift {
