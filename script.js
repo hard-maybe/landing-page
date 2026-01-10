@@ -38,39 +38,19 @@ setInterval(() => {
 }, 6000);
 
 
-const bgColors = [
-  "#6282b0", // bg1
-  "#ffffff", // bg2
-  "#6282b0", // bg3
-  "#6282b0", // bg4
-  "#6282b0", // bg5
-  "#6282b0", // bg6
-  "#6282b0", // bg7
-  "#6282b0", // bg8
-  "#6282b0", // bg9
-  "#6282b0", // bg10
-  "#6282b0", // bg11
-  "#6282b0"  // bg12
-];
+const backgrounds = document.querySelectorAll('.bg');
 
-const totalImages = 12;
-const interval = 6000; // MUST match your fade spacing
+let lastColor = null;
 
-let current = 0;
-
-function updateUIColor() {
-  document.documentElement.style.setProperty(
-    "--ui-color",
-    bgColors[current]
-  );
-
-  current = (current + 1) % totalImages;
-}
-
-// initial
-updateUIColor();
-
-// sync with background cycle
-setInterval(updateUIColor, interval);
-
-
+setInterval(() => {
+  backgrounds.forEach(bg => {
+    const opacity = parseFloat(getComputedStyle(bg).opacity);
+    if (opacity > 0.5) {
+      const color = bg.dataset.color;
+      if (color && color !== lastColor) {
+        document.documentElement.style.setProperty('--ui-color', color);
+        lastColor = color;
+      }
+    }
+  });
+}, 500);
