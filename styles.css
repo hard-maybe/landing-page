@@ -51,25 +51,21 @@ nav span {
 /* Background layers */
 .background {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   overflow: hidden;
   z-index: 0;
 }
 
 .bg {
   position: absolute;
-  top: -2%;
-  left: -2%;
-  width: 104%;
-  height: 104%;
+  inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
   will-change: opacity, transform;
+  transform-origin: center;
+  backface-visibility: hidden;
 }
 
 /* Images */
