@@ -146,10 +146,12 @@ nav span {
 }
 
 
-.logo {
-  width: 280px;
-  color: #6282B0; /* controls SVG fill */
-  transition: color 1.2s ease;
+#logo {
+  color: #f7f7f7;
+}
+
+.dark-bg #logo {
+  color: #111;
 }
 
 
