@@ -110,7 +110,7 @@ nav span {
   .bg11,
   .bg12 {
     animation:
-      fade 24s infinite,
+      fade 72s infinite,
       drift 90s ease-in-out infinite;
     transform: scale(1.02);
   }
