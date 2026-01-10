@@ -174,7 +174,7 @@ nav span {
 
 #about-panel {
   position: absolute;
-  top: calc(50% + 58px); /* sits under logo + nav */
+  top: calc(50% + 62px); /* sits under logo + nav */
   left: 50%;
   transform: translateX(-50%);
 
