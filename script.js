@@ -27,15 +27,16 @@ setInterval(() => {
 }, 7300);
 
 
-const aboutToggle = document.getElementById('about-toggle');
+const aboutLink = document.querySelector('[data-about]');
 const aboutPanel = document.getElementById('about-panel');
+const aboutClose = document.querySelector('.about-close');
 
-aboutToggle.addEventListener('click', (e) => {
+aboutLink.addEventListener('click', (e) => {
   e.preventDefault();
-  aboutPanel.classList.toggle('active');
+  aboutPanel.classList.add('is-open');
 });
 
-// click outside to close
-aboutPanel.addEventListener('click', () => {
-  aboutPanel.classList.remove('active');
+aboutClose.addEventListener('click', () => {
+  aboutPanel.classList.remove('is-open');
 });
+
