@@ -220,6 +220,80 @@ nav span {
   line-height: 1.6;
 }
 
+.about-box {
+  position: relative;
+  margin-top: 24px;
+  padding: 20px 24px;
+  max-width: 420px;
+
+  background: rgba(255, 255, 255, 0.18); /* darker frost */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 14px;
+  color: var(--ui-color);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12);
+
+  overflow: hidden;
+}
+
+.about-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255,255,255,0.6) 45%,
+      rgba(255,255,255,0.9) 50%,
+      rgba(255,255,255,0.6) 55%,
+      transparent 70%
+    );
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-box::before {
+    animation: glass-glint 18s ease-in-out infinite;
+  }
+}
+
+@keyframes glass-glint {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  10% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+}
+
+
 @media (hover: hover) {
   #about-toggle:hover ~ #about-panel {
     opacity: 1;
