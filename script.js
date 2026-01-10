@@ -27,16 +27,21 @@ setInterval(() => {
 }, 7300);
 
 
-const aboutLink = document.querySelector('[data-about]');
-const aboutPanel = document.getElementById('about-panel');
-const aboutClose = document.querySelector('.about-close');
+document.addEventListener('DOMContentLoaded', () => {
+  const aboutLink = document.querySelector('[data-about]');
+  const aboutPanel = document.getElementById('about-panel');
+  const aboutClose = document.querySelector('.about-close');
 
-aboutLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  aboutPanel.classList.add('is-open');
+  if (!aboutLink || !aboutPanel || !aboutClose) return;
+
+  aboutLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    aboutPanel.classList.add('is-open');
+  });
+
+  aboutClose.addEventListener('click', () => {
+    aboutPanel.classList.remove('is-open');
+  });
 });
 
-aboutClose.addEventListener('click', () => {
-  aboutPanel.classList.remove('is-open');
-});
 
