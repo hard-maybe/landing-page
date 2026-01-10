@@ -174,18 +174,16 @@ nav span {
 
 #about-panel {
   position: absolute;
-  top: calc(50% + 62px); /* sits under logo + nav */
+  top: 100%;
+  margin-top: 2rem; /* space below nav */
   left: 50%;
-  transform: translateX(-50%);
-
+  transform: translateX(-50%) translateY(-8px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease,
-  transform 0.6s ease;
-  transform: translateX(-50%) translateY(-8px);
-
+  transition: opacity 0.4s ease, transform 0.6s ease;
   z-index: 3;
 }
+
 
 
 #about-panel.is-open {
@@ -328,3 +326,10 @@ nav span {
   transform: scale(1.05);
 }
 
+@media (max-width: 768px) {
+  .about-inner {
+    width: 80vw;
+    max-width: none;
+    padding: 24px;
+  }
+}
