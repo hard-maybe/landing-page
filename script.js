@@ -41,17 +41,31 @@ updateUIColorByIndex(index);
 
 
 
+// UI colours mapped to background index
+const uiColors = [
+  '#ffffff', // bg1
+  '#6282B0', // bg2
+  '#ffffff', // bg3
+  '#6282B0', // bg4
+  '#6282B0', // bg5
+  '#6282B0', // bg6
+  '#ffffff', // bg7
+  '#6282B0', // bg8
+  '#6282B0', // bg9
+  '#6282B0', // bg10
+  '#6282B0', // bg11
+  '#6282B0'  // bg12
+];
+
 const root = document.documentElement;
+let index = 0;
 
-function colorForIndex(i) {
-  // Light images → dark UI
-  if ([0, 2, 6].includes(i)) {
-    return '#ffffff';
-  }
-  // Dark images → light UI
-  return '#6282B0';
-}
+// set initial colour
+root.style.setProperty('--ui-color', uiColors[0]);
 
-function updateUIColorByIndex(i) {
-  root.style.setProperty('--ui-color', colorForIndex(i));
-}
+// advance colour every 8s (matches animation-delay)
+setInterval(() => {
+  index = (index + 1) % uiColors.length;
+  root.style.setProperty('--ui-color', uiColors[index]);
+}, 8000);
+
