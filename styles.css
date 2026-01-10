@@ -48,7 +48,10 @@ nav a {
 
 nav span {
   margin: 0 4px;
+  color: var(--ui-color);
+  transition: color 3.5s ease;
 }
+
 
 /* Background layers */
 .background {
