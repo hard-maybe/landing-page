@@ -26,10 +26,15 @@ html, body {
   z-index: 2;
 }
 
+.nav-wrap {
+  position: relative;
+}
+
+
 .panel {
   position: absolute;
-  top: 100%;              /* sits below nav */
-  margin-top: 1.6rem;     /* adjust spacing here only */
+  top: 100%;
+  margin-top: 1.6rem;
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
   width: min(520px, 80vw);
@@ -217,7 +222,7 @@ nav a.is-active {
 
 
 
-.about-glow {
+.panel-glow {
   position: absolute;
   inset: -8px;
   border-radius: 20px;
@@ -235,7 +240,7 @@ nav a.is-active {
   opacity: 0.35;
 }
 
-.about-inner {
+.panel-inner {
   position: relative;
   overflow: hidden;
   max-width: 520px;
@@ -265,7 +270,7 @@ nav a.is-active {
 }
 
 
-.about-inner h2 {
+.panel-inner h2 {
   margin-top: 0;
   font-size: 18px;
   letter-spacing: 0.08em;
@@ -274,14 +279,14 @@ nav a.is-active {
   transition: none;
 }
 
-.about-inner p {
+.panel-inner p {
   font-size: 14px;
   line-height: 1.6;
   color: inherit;
   transition: none;
 }
 
-.about-inner {
+.panel-inner {
   position: relative;
   max-width: 520px;
   padding: 32px;
@@ -299,7 +304,7 @@ nav a.is-active {
 }
 
 /* glass shine */
-.about-inner::before {
+.panel-inner::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -323,7 +328,7 @@ nav a.is-active {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .about-inner::before {
+  .panel-inner::before {
     animation: glass-glint 18s ease-in-out infinite;
   }
 }
@@ -353,33 +358,28 @@ nav a.is-active {
 
 
 
-.about-close {
+.panel-close {
   position: absolute;
   top: 10px;
   right: 12px;
-
   width: 28px;
   height: 28px;
-
   border: none;
   background: none;
   color: var(--ui-color);
-
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
-
   opacity: 0.6;
-  transition: opacity 0.3s ease, transform 0.3s ease, color 3.5s ease;;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 3.5s ease;
 }
-
-.about-close:hover {
+.panel-close:hover {
   opacity: 1;
   transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  .about-inner {
+  .panel-inner {
     width: 80vw;
     max-width: none;
     padding: 24px;
