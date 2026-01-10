@@ -100,9 +100,19 @@ panels.forEach(({ link, panel }) => {
 /* ==========
    CLICK OUTSIDE
    ========== */
-document.addEventListener('click', () => {
-  closeAllPanels();
+document.addEventListener('click', (e) => {
+  const clickedInsidePanel = panels.some(({ panel }) =>
+    panel?.contains(e.target)
+  );
+  const clickedPanelLink = panels.some(({ link }) =>
+    link?.contains(e.target)
+  );
+
+  if (!clickedInsidePanel && !clickedPanelLink) {
+    closeAllPanels();
+  }
 });
+
 
 /* ==========
    ESC KEY
