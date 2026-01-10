@@ -286,22 +286,7 @@ nav a.is-active {
   transition: none;
 }
 
-.panel-inner {
-  position: relative;
-  max-width: 520px;
-  padding: 32px;
-  border-radius: 16px;
-  background: rgba(20, 20, 20, 0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  color: var(--ui-color);
-  text-align: left;
-  box-shadow:
-    0 20px 60px rgba(0,0,0,0.35),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
-  overflow: hidden;
-  transition: color 3.5s ease;
-}
+
 
 /* glass shine */
 .panel-inner::before {
