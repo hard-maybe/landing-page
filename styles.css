@@ -159,3 +159,52 @@ nav span {
   color: var(--ui-color);
   transition: color 3.5s ease;
 }
+
+
+#about-panel {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  z-index: 3;
+}
+
+#about-panel.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.about-inner {
+  max-width: 520px;
+  padding: 32px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  color: var(--ui-color);
+  text-align: left;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.about-inner h2 {
+  margin-top: 0;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-inner p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
