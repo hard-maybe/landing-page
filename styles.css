@@ -211,6 +211,8 @@ nav span {
     0 20px 60px rgba(0,0,0,0.35),
     inset 0 0 0 1px rgba(255,255,255,0.08);
 
+  transition: color 3.5s ease;
+
 
 }
 
@@ -220,11 +222,13 @@ nav span {
   font-size: 18px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: color 3.5s ease;
 }
 
 .about-inner p {
   font-size: 14px;
   line-height: 1.6;
+  transition: color 3.5s ease;
 }
 
 .about-inner {
@@ -241,6 +245,7 @@ nav span {
     0 20px 60px rgba(0,0,0,0.35),
     inset 0 0 0 1px rgba(255,255,255,0.08);
   overflow: hidden;
+  transition: color 3.5s ease;
 }
 
 /* glass shine */
@@ -315,7 +320,7 @@ nav span {
   cursor: pointer;
 
   opacity: 0.6;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 3.5s ease;;
 }
 
 .about-close:hover {
