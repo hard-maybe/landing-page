@@ -28,7 +28,9 @@ html, body {
 
 .nav-wrap {
   position: relative;
+  color: var(--ui-color);
 }
+
 
 
 .panel {
