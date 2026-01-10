@@ -35,14 +35,21 @@ const navLinks = document.querySelectorAll('nav a:not([data-about])');
 
 function openAbout() {
   aboutPanel.classList.add('is-open');
+  aboutLink.classList.add('is-active');
 }
 
 function closeAbout() {
   aboutPanel.classList.remove('is-open');
+  aboutLink.classList.remove('is-active');
 }
 
 function toggleAbout() {
-  aboutPanel.classList.toggle('is-open');
+  const isOpen = aboutPanel.classList.contains('is-open');
+  if (isOpen) {
+    closeAbout();
+  } else {
+    openAbout();
+  }
 }
 
 /* ABOUT link toggles */
@@ -67,7 +74,7 @@ document.addEventListener('click', (e) => {
 
 /* Escape key */
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+  if (e.key === 'Escape' && aboutPanel.classList.contains('is-open')) {
     closeAbout();
   }
 });
