@@ -173,7 +173,8 @@ nav span {
 
 
 #about-panel {
-  position: absolute;
+  position: relative;
+  width: min(520px, 80vw);
   top: 100%;
   margin-top: 2rem; /* space below nav */
   left: 50%;
@@ -192,8 +193,27 @@ nav span {
   transform: translateX(-50%) translateY(0);
 }
 
+.about-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 20px;
+  pointer-events: none;
+  filter: blur(12px);
+  background:
+    linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255,255,255,0.25) 45%,
+      rgba(255,255,255,0.4) 50%,
+      rgba(255,255,255,0.25) 55%,
+      transparent 70%
+    );
+  opacity: 0.35;
+}
 
 .about-inner {
+  position: relative;
+  overflow: hidden;
   max-width: 520px;
   padding: 32px;
   border-radius: 16px;
