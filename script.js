@@ -27,59 +27,101 @@ setInterval(() => {
 }, 7300);
 
 
-const aboutLink = document.querySelector('[data-about]');
-const aboutPanel = document.getElementById('about-panel');
-const aboutInner = aboutPanel.querySelector('.about-inner');
-const aboutClose = aboutPanel.querySelector('.about-close');
-const navLinks = document.querySelectorAll('nav a:not([data-about])');
+/* ==========
+   PANEL SETUP
+   ========== */
 
-function openAbout() {
-  aboutPanel.classList.add('is-open');
-  aboutLink.classList.add('is-active');
+const panels = [
+  {
+    link: document.querySelector('[data-about]'),
+    panel: document.getElementById('about-panel')
+  },
+  {
+    link: document.querySelector('[data-subscribe]'),
+    panel: document.getElementById('subscribe-panel')
+  }
+];
+
+const navLinks = document.querySelectorAll('nav a');
+
+/* ==========
+   HELPERS
+   ========== */
+
+function openPanel(target) {
+  panels.forEach(({ link, panel }) => {
+    const isTarget = panel === target;
+    panel.classList.toggle('is-open', isTarget);
+    link.classList.toggle('is-active', isTarget);
+  });
 }
 
-function closeAbout() {
-  aboutPanel.classList.remove('is-open');
-  aboutLink.classList.remove('is-active');
+function closeAllPanels() {
+  panels.forEach(({ link, panel }) => {
+    panel.classList.remove('is-open');
+    link.classList.remove('is-active');
+  });
 }
 
-function toggleAbout() {
-  const isOpen = aboutPanel.classList.contains('is-open');
+function togglePanel(target) {
+  const isOpen = target.classList.contains('is-open');
   if (isOpen) {
-    closeAbout();
+    closeAllPanels();
   } else {
-    openAbout();
+    openPanel(target);
   }
 }
 
-/* ABOUT link toggles */
-aboutLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  toggleAbout();
+/* ==========
+   LINK CLICKS
+   ========== */
+
+panels.forEach(({ link, panel }) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    togglePanel(panel);
+  });
+
+  const closeBtn = panel.querySelector('.panel-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeAllPanels);
+  }
 });
 
-/* Close button */
-aboutClose.addEventListener('click', closeAbout);
+/* ==========
+   CLICK OUTSIDE
+   ========== */
 
-/* Click outside panel */
 document.addEventListener('click', (e) => {
-  if (
-    aboutPanel.classList.contains('is-open') &&
-    !aboutInner.contains(e.target) &&
-    !aboutLink.contains(e.target)
-  ) {
-    closeAbout();
+  const clickedInsidePanel = panels.some(({ panel }) =>
+    panel.querySelector('.panel-inner')?.contains(e.target)
+  );
+
+  const clickedPanelLink = panels.some(({ link }) =>
+    link.contains(e.target)
+  );
+
+  if (!clickedInsidePanel && !clickedPanelLink) {
+    closeAllPanels();
   }
 });
 
-/* Escape key */
+/* ==========
+   ESC KEY
+   ========== */
+
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && aboutPanel.classList.contains('is-open')) {
-    closeAbout();
+  if (e.key === 'Escape') {
+    closeAllPanels();
   }
 });
 
-/* Other nav links close it */
+/* ==========
+   OTHER NAV LINKS
+   ========== */
+
 navLinks.forEach(link => {
-  link.addEventListener('click', closeAbout);
+  if (![...panels].some(p => p.link === link)) {
+    link.addEventListener('click', closeAllPanels);
+  }
 });
