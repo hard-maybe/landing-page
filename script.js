@@ -1,131 +1,79 @@
-// ==========================
-// UI COLOUR CYCLING
-// ==========================
-const uiColors = [
-  '#fdf9ce',
-  '#6282B0',
-  '#efeee1',
-  '#5fc29e',
-  '#6282B0',
-  '#5fc29e',
-  '#efeee1',
-  '#5fc29e',
-  '#efeee1',
-  '#fdf9ce',
-  '#fdf9ce',
-  '#6282B0'
-];
+document.addEventListener('DOMContentLoaded', () => {
 
-const root = document.documentElement;
-let index = 0;
+  /* =====================
+     UI COLOUR ANIMATION
+     ===================== */
+  const uiColors = [
+    '#fdf9ce',
+    '#6282B0',
+    '#efeee1',
+    '#5fc29e',
+    '#6282B0',
+    '#5fc29e',
+    '#efeee1',
+    '#5fc29e',
+    '#efeee1',
+    '#fdf9ce',
+    '#fdf9ce',
+    '#6282B0'
+  ];
 
-root.style.setProperty('--ui-color', uiColors[index]);
+  const root = document.documentElement;
+  let colorIndex = 0;
 
-setInterval(() => {
-  index = (index + 1) % uiColors.length;
-  root.style.setProperty('--ui-color', uiColors[index]);
-}, 7300);
+  root.style.setProperty('--ui-color', uiColors[colorIndex]);
 
-// ==========================
-// PANEL SETUP
-// ==========================
-const panels = [
-  {
-    link: document.querySelector('[data-about]'),
-    panel: document.getElementById('about-panel')
-  },
-  {
-    link: document.querySelector('[data-subscribe]'),
-    panel: document.getElementById('subscribe-panel')
-  }
-];
+  setInterval(() => {
+    colorIndex = (colorIndex + 1) % uiColors.length;
+    root.style.setProperty('--ui-color', uiColors[colorIndex]);
+  }, 7300);
 
-const navLinks = document.querySelectorAll('nav a');
+  /* =====================
+     PANEL SETUP (SAFE)
+     ===================== */
+  const panels = [
+    {
+      link: document.querySelector('[data-about]'),
+      panel: document.getElementById('about-panel')
+    },
+    {
+      link: document.querySelector('[data-subscribe]'),
+      panel: document.getElementById('subscribe-panel')
+    }
+  ];
 
-// ==========================
-// HELPERS
-// ==========================
-function openPanel(targetPanel) {
   panels.forEach(({ link, panel }) => {
-    const isTarget = panel === targetPanel;
-    panel.classList.toggle('is-open', isTarget);
-    link.classList.toggle('is-active', isTarget);
-  });
-}
+    if (!link || !panel) {
+      console.warn('Panel wiring missing:', { link, panel });
+      return;
+    }
 
-function closeAllPanels() {
-  panels.forEach(({ link, panel }) => {
-    panel.classList.remove('is-open');
-    link.classList.remove('is-active');
-  });
-}
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
 
-function togglePanel(targetPanel) {
-  targetPanel.classList.contains('is-open')
-    ? closeAllPanels()
-    : openPanel(targetPanel);
-}
+      const isOpen = panel.classList.contains('is-open');
 
-// ==========================
-// NAV LINK CLICKS
-// ==========================
-panels.forEach(({ link, panel }) => {
-  if (!link || !panel) return;
+      panels.forEach(p => {
+        p.panel.classList.remove('is-open');
+        p.link.classList.remove('is-active');
+      });
 
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    togglePanel(panel);
-  });
-
-  const closeBtn = panel.querySelector('.panel-close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeAllPanels();
+      if (!isOpen) {
+        panel.classList.add('is-open');
+        link.classList.add('is-active');
+      }
     });
-  }
 
-  // 🔒 Prevent clicks inside the panel from closing it
-  const inner = panel.querySelector('.panel-inner');
-  if (inner) {
-    inner.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  }
-});
+    const closeBtn = panel.querySelector('.panel-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        panels.forEach(p => {
+          p.panel.classList.remove('is-open');
+          p.link.classList.remove('is-active');
+        });
+      });
+    }
+  });
 
-// ==========================
-// CLICK OUTSIDE PANELS
-// ==========================
-document.addEventListener('click', (e) => {
-  const clickedPanel = panels.some(({ panel }) =>
-    panel.contains(e.target)
-  );
-  const clickedPanelLink = panels.some(({ link }) =>
-    link.contains(e.target)
-  );
-
-  if (!clickedPanel && !clickedPanelLink) {
-    closeAllPanels();
-  }
-});
-
-// ==========================
-// ESC KEY
-// ==========================
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeAllPanels();
-  }
-});
-
-// ==========================
-// OTHER NAV LINKS
-// ==========================
-navLinks.forEach(link => {
-  const isPanelLink = panels.some(p => p.link === link);
-  if (!isPanelLink) {
-    link.addEventListener('click', closeAllPanels);
-  }
 });
