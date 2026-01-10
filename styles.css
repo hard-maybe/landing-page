@@ -39,7 +39,7 @@ nav {
 }
 
 nav a {
-  color: #6282b0;
+  color: var(--ui-color);
   text-decoration: none;
   margin: 0 6px;
 }
@@ -152,9 +152,10 @@ nav span {
   --ui-color: #6282b0;
 }
 
-#logo,
-nav {
+
+#logo {
   color: var(--ui-color);
   transition: color 1.2s ease;
 }
+
 
