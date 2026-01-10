@@ -249,6 +249,9 @@ nav a.is-active {
 
   transition: color 3.5s ease;
 
+    transform: translateZ(0);
+  will-change: color;
+
 
 }
 
