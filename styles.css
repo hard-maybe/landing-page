@@ -146,12 +146,15 @@ nav span {
 }
 
 
-#logo {
-  color: #6282b0;
+
+
+:root {
+  --ui-color: #6282b0;
 }
 
-.dark-bg #logo {
-  color: #111;
+#logo,
+nav {
+  color: var(--ui-color);
+  transition: color 1.2s ease;
 }
-
 
