@@ -188,11 +188,12 @@ nav span {
 }
 
 
-#about-panel.active {
+#about-panel.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
+
 
 .about-inner {
   max-width: 520px;
