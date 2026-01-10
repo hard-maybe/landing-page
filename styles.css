@@ -206,6 +206,7 @@ nav a.is-active {
   font-size: 13px;          /* subtle bump */
   font-weight: 400;
   letter-spacing: 0.18em;
+  text-transform: lowercase;
 }
 
 
