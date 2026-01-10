@@ -19,17 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const root = document.documentElement;
-  let colorIndex = 0;
+  let index = 0;
 
-  root.style.setProperty('--ui-color', uiColors[colorIndex]);
+  root.style.setProperty('--ui-color', uiColors[index]);
 
   setInterval(() => {
-    colorIndex = (colorIndex + 1) % uiColors.length;
-    root.style.setProperty('--ui-color', uiColors[colorIndex]);
+    index = (index + 1) % uiColors.length;
+    root.style.setProperty('--ui-color', uiColors[index]);
   }, 7300);
 
   /* =====================
-     PANEL SETUP (SAFE)
+     PANEL SETUP
      ===================== */
   const panels = [
     {
@@ -42,38 +42,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  function closeAllPanels() {
+    panels.forEach(({ link, panel }) => {
+      panel?.classList.remove('is-open');
+      link?.classList.remove('is-active');
+    });
+  }
+
+  function openPanel(target) {
+    panels.forEach(({ link, panel }) => {
+      const isTarget = panel === target;
+      panel?.classList.toggle('is-open', isTarget);
+      link?.classList.toggle('is-active', isTarget);
+    });
+  }
+
   panels.forEach(({ link, panel }) => {
-    if (!link || !panel) {
-      console.warn('Panel wiring missing:', { link, panel });
-      return;
-    }
+    if (!link || !panel) return;
 
     link.addEventListener('click', (e) => {
       e.preventDefault();
-
-      const isOpen = panel.classList.contains('is-open');
-
-      panels.forEach(p => {
-        p.panel.classList.remove('is-open');
-        p.link.classList.remove('is-active');
-      });
-
-      if (!isOpen) {
-        panel.classList.add('is-open');
-        link.classList.add('is-active');
-      }
+      panel.classList.contains('is-open')
+        ? closeAllPanels()
+        : openPanel(panel);
     });
 
-    const closeBtn = panel.querySelector('.panel-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        panels.forEach(p => {
-          p.panel.classList.remove('is-open');
-          p.link.classList.remove('is-active');
-        });
-      });
+    panel.querySelector('.panel-close')?.addEventListener('click', closeAllPanels);
+  });
+
+  /* =====================
+     CLICK OUTSIDE
+     ===================== */
+  document.addEventListener('click', (e) => {
+    const clickedPanel = panels.some(({ panel }) => panel?.contains(e.target));
+    const clickedLink  = panels.some(({ link }) => link?.contains(e.target));
+    if (!clickedPanel && !clickedLink) {
+      closeAllPanels();
     }
+  });
+
+  /* =====================
+     ESC KEY
+     ===================== */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllPanels();
   });
 
 });
