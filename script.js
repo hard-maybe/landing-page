@@ -25,3 +25,17 @@ setInterval(() => {
   index = (index + 1) % uiColors.length;
   root.style.setProperty('--ui-color', uiColors[index]);
 }, 7300);
+
+
+const aboutToggle = document.getElementById('about-toggle');
+const aboutPanel = document.getElementById('about-panel');
+
+aboutToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  aboutPanel.classList.toggle('active');
+});
+
+// click outside to close
+aboutPanel.addEventListener('click', () => {
+  aboutPanel.classList.remove('active');
+});
