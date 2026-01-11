@@ -134,52 +134,65 @@ navLinks.forEach(link => {
 (function () {
   const drawer = document.getElementById('footerDrawer');
   const handle = document.getElementById('footerHandle');
+  const panel = document.getElementById('footerPanel');
+  const closeTab = drawer ? drawer.querySelector('.footer-close-tab') : null;
   const yearEl = document.getElementById('year');
 
   // Exit quietly if footer drawer isn't on the page
-  if (!drawer || !handle) return;
+  if (!drawer || !handle || !panel) return;
 
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   function setOpen(next) {
     drawer.classList.toggle('is-open', next);
-
-    // IMPORTANT: don't aria-hide while the handle has focus (see fix 2 below)
-    // We'll set aria-hidden only on the panel instead of the whole drawer.
-    const panel = document.getElementById('footerPanel');
-    if (panel) panel.setAttribute('aria-hidden', String(!next));
-
+    panel.setAttribute('aria-hidden', String(!next));
     handle.setAttribute('aria-expanded', String(next));
 
+    // Bottom chevron is now "open" only (keep it pointing up)
     const chevron = handle.querySelector('.chevron');
-    if (chevron) chevron.textContent = next ? '⌄' : '⌃';
+    if (chevron) chevron.textContent = '⌃';
 
+    // Pause/clear bounce while open
     if (next) handle.classList.remove('is-nudging');
   }
 
+  // Open via bottom chevron
   handle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setOpen(!drawer.classList.contains('is-open'));
+    setOpen(true);
   });
 
+  // Close via top chevron inside the panel
+  if (closeTab) {
+    closeTab.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(false);
+    });
+  }
+
+  // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
       setOpen(false);
     }
   });
 
+  // Gentle, occasional nudge (only when closed)
   function scheduleNudge() {
     const delay = 22000 + Math.random() * 23000; // 22–45s
     setTimeout(() => {
       if (!drawer.classList.contains('is-open')) {
         handle.classList.remove('is-nudging');
-        void handle.offsetWidth;
+        void handle.offsetWidth; // restart animation
         handle.classList.add('is-nudging');
       }
       scheduleNudge();
     }, delay);
   }
 
+  // Ensure initial state is closed for aria + classes
+  setOpen(false);
   scheduleNudge();
 })();
