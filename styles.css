@@ -693,24 +693,73 @@ nav a.is-active {
 
 
 @media (max-width: 820px) {
+
+  /* Switch to vertical flow */
   .footer-inner {
-    grid-template-columns: 1fr;
-    align-items: start;
-    padding: 44px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+    padding: 44px 16px 16px; /* space for close chevron */
   }
 
+  /* 1) Ack first, full width */
   .footer-mid {
-    justify-content: flex-start;
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .footer-mid .ack {
-    text-align: left;
+    width: 100%;
+    max-width: none;
+    text-align: left; /* change to center if preferred */
+  }
+
+  /* 2) Icon row centred */
+  .footer-left {
+    order: 2;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-mark-row {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* 3) Links in 2 columns */
+  .footer-right {
+    order: 3;
+    width: 100%;
   }
 
   .footer-links {
-    justify-content: start;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: repeat(2, 10ch); /* keeps no-wiggle fix */
+    row-gap: 12px;
+  }
+
+  /* 4) Meta at very bottom, side-by-side */
+  .footer-meta {
+    order: 4;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* ✅ side by side */
+    align-items: center;
+    text-align: left;
+    font-size: 11px;
+  }
+
+  .footer-small {
+    margin-top: 0; /* prevent stacking feel */
+    text-align: right;
   }
 }
+
 
 
 /* Hide the bottom "open" chevron when the drawer is open */
