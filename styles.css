@@ -456,19 +456,28 @@ nav a.is-active {
 
 /* The little chevron handle in the middle */
 .footer-handle {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+
+  transform: translateX(-50%); /* 🔑 REQUIRED */
+
   background: none;
   box-shadow: none;
   padding: 6px 10px;
   border: none;
   opacity: 0.55;
 
-    color: var(--ui-color);
+  color: var(--ui-color);
 
   transition:
     color 3.5s ease,
-    opacity 0.25s ease,
+    opacity 0.4s ease,
     transform 0.25s ease;
+
+  pointer-events: auto;
 }
+
 
 .footer-handle:hover {
   opacity: 0.9;
