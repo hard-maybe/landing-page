@@ -457,7 +457,7 @@ nav a.is-active {
 /* The little chevron handle in the middle */
 .footer-handle {
   pointer-events: auto;
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: 10px;
   transform: translateX(-50%);
@@ -519,6 +519,11 @@ nav a.is-active {
   transition: transform 0.5s ease;
   padding: 16px 16px 18px;
   z-index: 1000; 
+}
+
+/* Slide panel into view when drawer is open */
+.footer-drawer.is-open .footer-panel {
+  transform: translateY(0);
 }
 
 
