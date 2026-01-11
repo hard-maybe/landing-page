@@ -139,6 +139,9 @@ navLinks.forEach(link => {
   // Exit quietly if footer drawer isn't on the page
   if (!drawer || !handle) return;
 
+  // Debug signal (remove later if you want)
+  console.log('[footer] bound');
+
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   function setOpen(next) {
@@ -146,7 +149,6 @@ navLinks.forEach(link => {
     drawer.setAttribute('aria-hidden', String(!next));
     handle.setAttribute('aria-expanded', String(next));
 
-    // Flip chevron direction
     const chevron = handle.querySelector('.chevron');
     if (chevron) chevron.textContent = next ? '⌄' : '⌃';
 
@@ -154,9 +156,14 @@ navLinks.forEach(link => {
     if (next) handle.classList.remove('is-nudging');
   }
 
+  // Make sure we start closed (prevents weird initial states)
+  setOpen(drawer.classList.contains('is-open'));
+
+  // Bind click
   handle.addEventListener('click', (e) => {
     e.preventDefault();
-    e.stopPropagation(); // don’t trigger your click-outside logic
+    e.stopPropagation();
+    console.log('[footer] click'); // Debug
     setOpen(!drawer.classList.contains('is-open'));
   });
 
@@ -172,14 +179,9 @@ navLinks.forEach(link => {
     const delay = 22000 + Math.random() * 23000; // 22–45s
     setTimeout(() => {
       if (!drawer.classList.contains('is-open')) {
-        // restart animation cleanly
         handle.classList.remove('is-nudging');
-        void handle.offsetWidth;
+        void handle.offsetWidth; // restart animation
         handle.classList.add('is-nudging');
       }
       scheduleNudge();
     }, delay);
-  }
-
-  scheduleNudge();
-})();
