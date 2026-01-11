@@ -22,7 +22,9 @@ html, body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 24px;
+  padding-top: 10vh;         /* pushes the visual center up */
+  padding-bottom: 4vh;       /* optional: keeps balance */
+  padding: calc(24px + 10vh) 24px 24px;  /* TOP / LR / BOTTOM */
   z-index: 2;
 }
 
@@ -38,7 +40,7 @@ html, body {
   top: 100%;
   margin-top: 0.1rem;
   left: 50%;
-  transform: translateX(-50%) translateY(-8px);
+  transform: translateX(-50%) translateY(-12px);
   width: min(520px, 80vw);
   opacity: 0;
   pointer-events: none;
