@@ -169,7 +169,7 @@ navLinks.forEach(link => {
 
   // Gentle, occasional nudge (only when closed)
   function scheduleNudge() {
-    const delay = 45000 + Math.random() * 45000; // 45–90s
+    const delay = 22000 + Math.random() * 23000; // 22–45s
     setTimeout(() => {
       if (!drawer.classList.contains('is-open')) {
         handle.classList.remove('is-nudging');
