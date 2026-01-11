@@ -139,49 +139,47 @@ navLinks.forEach(link => {
   // Exit quietly if footer drawer isn't on the page
   if (!drawer || !handle) return;
 
-  // Debug signal (remove later if you want)
-  console.log('[footer] bound');
-
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   function setOpen(next) {
     drawer.classList.toggle('is-open', next);
-    drawer.setAttribute('aria-hidden', String(!next));
+
+    // IMPORTANT: don't aria-hide while the handle has focus (see fix 2 below)
+    // We'll set aria-hidden only on the panel instead of the whole drawer.
+    const panel = document.getElementById('footerPanel');
+    if (panel) panel.setAttribute('aria-hidden', String(!next));
+
     handle.setAttribute('aria-expanded', String(next));
 
     const chevron = handle.querySelector('.chevron');
     if (chevron) chevron.textContent = next ? '⌄' : '⌃';
 
-    // Pause/clear bounce while open
     if (next) handle.classList.remove('is-nudging');
   }
 
-  // Make sure we start closed (prevents weird initial states)
-  setOpen(drawer.classList.contains('is-open'));
-
-  // Bind click
   handle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('[footer] click'); // Debug
     setOpen(!drawer.classList.contains('is-open'));
   });
 
-  // Close footer drawer with Escape (without breaking panels)
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
       setOpen(false);
     }
   });
 
-  // Gentle, occasional nudge (only when closed)
   function scheduleNudge() {
     const delay = 22000 + Math.random() * 23000; // 22–45s
     setTimeout(() => {
       if (!drawer.classList.contains('is-open')) {
         handle.classList.remove('is-nudging');
-        void handle.offsetWidth; // restart animation
+        void handle.offsetWidth;
         handle.classList.add('is-nudging');
       }
       scheduleNudge();
     }, delay);
+  }
+
+  scheduleNudge();
+})();
