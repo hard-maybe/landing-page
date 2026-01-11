@@ -414,7 +414,7 @@ nav a.is-active {
   cursor: pointer;
   color: var(--ui-color);
   opacity: 0.7;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 3.5s ease;
 }
 
 .subscribe-form input[type="submit"]:hover {
