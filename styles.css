@@ -645,7 +645,7 @@ nav a.is-active {
 /* RIGHT: links in 2 columns */
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: repeat(2, 10ch);  /* ✅ fixed columns (tweak 9–12ch) */
   column-gap: 18px;
   row-gap: 10px;
 
@@ -676,7 +676,7 @@ nav a.is-active {
   transition:
     opacity 0.25s ease,
     color 3.5s ease,
-    transform 0.25s ease;
+    transform 0.3s cubic-bezier(.2,.7,.2,1);
 }
 
 
