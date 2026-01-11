@@ -456,30 +456,30 @@ nav a.is-active {
 
 /* The little chevron handle in the middle */
 .footer-handle {
-  pointer-events: auto;
-  position: absolute;
-  left: 50%;
-  bottom: 10px;
-  transform: translateX(-50%);
+  background: none;
+  box-shadow: none;
+  padding: 6px 10px;
   border: none;
-  background: rgba(20, 20, 20, 0.25);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: var(--ui-color);
-  border-radius: 999px;
-  padding: 10px 14px;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.08);
-  transition: transform 0.35s ease, opacity 0.35s ease;
-  opacity: 0.75;
+  opacity: 0.55;
+
+    color: var(--ui-color);
+
+  transition:
+    color 3.5s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
-.footer-handle:hover { opacity: 1; transform: translateX(-50%) translateY(-1px); }
+.footer-handle:hover {
+  opacity: 0.9;
+  transform: translateX(-50%) translateY(-1px);
+}
 
 .footer-handle .chevron {
+  font-size: 21px; /* was ~14px; 21px ≈ +50% */
+  line-height: 1;
   display: inline-block;
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  color: inherit;
 }
 
 /* Occasional bounce nudge (we’ll trigger via JS) */
@@ -489,7 +489,7 @@ nav a.is-active {
 
 @keyframes nudge {
   0% { transform: translateX(-50%) translateY(0); }
-  35% { transform: translateX(-50%) translateY(-7px); }
+  35% { transform: translateX(-50%) translateY(-5px); }
   70% { transform: translateX(-50%) translateY(0); }
   100% { transform: translateX(-50%) translateY(0); }
 }
