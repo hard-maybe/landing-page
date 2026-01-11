@@ -542,6 +542,7 @@ nav a.is-active {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   color: var(--ui-color);
+  transition: color 3.5s ease;
 
   box-shadow:
     0 20px 60px rgba(0,0,0,0.35),
@@ -612,12 +613,15 @@ nav a.is-active {
   text-align: left;
   font-size: 12px;
   letter-spacing: 0.02em;
+  color: inherit;
+  transition: color 3.5s ease;
 }
 
 .footer-small {
   opacity: 0.6;
   margin-top: 4px;
   font-size: 11px;
+  transition: color 3.5s ease;
 }
 
 /* MID: acknowledgement bottom-center */
@@ -634,6 +638,8 @@ nav a.is-active {
   line-height: 1.6;
   opacity: 0.9;
   max-width: 56ch;
+  color: inherit;
+  transition: color 3.5s ease;
 }
 
 /* RIGHT: links in 2 columns */
