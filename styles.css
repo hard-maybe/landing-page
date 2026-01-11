@@ -522,6 +522,12 @@ nav a.is-active {
   transform: translateY(0);
 }
 
+/* When open: move handle to top of the open drawer */
+.footer-drawer.is-open .footer-handle {
+  bottom: auto;
+  top: 10px;
+}
+
 /* Glass inner */
 .footer-inner {
   max-width: 1100px;
