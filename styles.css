@@ -661,9 +661,26 @@ nav a.is-active {
   color: var(--ui-color);
   text-decoration: none;
   opacity: 0.75;
-  transition: opacity 0.2s ease, color 3.5s ease;
+
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+
+  transition:
+    opacity 0.25s ease,
+    color 3.5s ease,
+    font-size 0.3s ease,
+    font-weight 0.3s ease,
+    letter-spacing 0.3s ease;
 }
-.footer-links a:hover { opacity: 1; }
+
+.footer-links a:hover {
+  opacity: 1;
+  font-family: "Manufacturing Consent", sans-serif;
+  font-size: 14px;        /* subtle bump */
+  font-weight: 500;       /* slight emphasis */
+  letter-spacing: 0.12em; /* keeps it airy */
+}
 
 @media (max-width: 820px) {
   .footer-inner {
