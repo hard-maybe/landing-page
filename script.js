@@ -139,25 +139,25 @@ navLinks.forEach(link => {
   // Exit quietly if footer drawer isn't on the page
   if (!drawer || !handle) return;
 
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   function setOpen(next) {
     drawer.classList.toggle('is-open', next);
     drawer.setAttribute('aria-hidden', String(!next));
     handle.setAttribute('aria-expanded', String(next));
 
+    // Flip chevron direction
     const chevron = handle.querySelector('.chevron');
-    if (chevron) {
-      chevron.textContent = next ? '⌄' : '⌃';
-    }
+    if (chevron) chevron.textContent = next ? '⌄' : '⌃';
+
+    // Pause/clear bounce while open
+    if (next) handle.classList.remove('is-nudging');
   }
 
   handle.addEventListener('click', (e) => {
+    e.preventDefault();
     e.stopPropagation(); // don’t trigger your click-outside logic
-    const isOpen = drawer.classList.contains('is-open');
-    setOpen(!isOpen);
+    setOpen(!drawer.classList.contains('is-open'));
   });
 
   // Close footer drawer with Escape (without breaking panels)
@@ -172,8 +172,9 @@ navLinks.forEach(link => {
     const delay = 22000 + Math.random() * 23000; // 22–45s
     setTimeout(() => {
       if (!drawer.classList.contains('is-open')) {
+        // restart animation cleanly
         handle.classList.remove('is-nudging');
-        void handle.offsetWidth; // restart animation
+        void handle.offsetWidth;
         handle.classList.add('is-nudging');
       }
       scheduleNudge();
@@ -182,4 +183,3 @@ navLinks.forEach(link => {
 
   scheduleNudge();
 })();
-
