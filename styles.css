@@ -22,11 +22,13 @@ html, body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 10vh;         /* pushes the visual center up */
-  padding-bottom: 4vh;       /* optional: keeps balance */
-  padding: calc(24px + 10vh) 24px 24px;  /* TOP / LR / BOTTOM */
+
+  padding: calc(24px + 8vh) 24px 24px;
+  /* ↑ adjust 8vh → 6–10vh to taste */
+
   z-index: 2;
 }
+
 
 .nav-wrap {
   position: relative;
