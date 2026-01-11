@@ -510,19 +510,17 @@ nav a.is-active {
 
 /* The actual drawer panel */
 .footer-panel {
+   position: fixed;          /* 🔑 anchor to viewport */
+  left: 0;
+  right: 0;
+  bottom: 0; 
   pointer-events: auto;
   transform: translateY(100%); /* hidden off-screen */
   transition: transform 0.5s ease;
   padding: 16px 16px 18px;
-  opacity: 0.9;
+  z-index: 1000; 
 }
 
-/* When footer is open, move chevron above the panel */
-.footer-drawer.is-open .footer-handle {
-  bottom: auto;
-  top: -14px;        /* ← key change: pull it above the panel */
-  z-index: 1001;     /* ensure it sits above the panel */
-}
 
 /* When open: move handle to top of the open drawer */
 .footer-drawer.is-open .footer-handle {
