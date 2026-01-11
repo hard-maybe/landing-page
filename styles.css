@@ -482,7 +482,7 @@ nav a.is-active {
     transform 0.35s ease,
     opacity 0.35s ease;
 
-  opacity: 0.75;
+  opacity: 0.1;
 }
 
 .footer-handle:hover {
