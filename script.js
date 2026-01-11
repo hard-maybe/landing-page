@@ -125,3 +125,61 @@ navLinks.forEach(link => {
     link.addEventListener('click', closeAllPanels);
   }
 });
+
+
+/* ==========
+   FOOTER DRAWER
+   ========== */
+
+(function () {
+  const drawer = document.getElementById('footerDrawer');
+  const handle = document.getElementById('footerHandle');
+  const yearEl = document.getElementById('year');
+
+  // Exit quietly if footer drawer isn't on the page
+  if (!drawer || !handle) return;
+
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  function setOpen(next) {
+    drawer.classList.toggle('is-open', next);
+    drawer.setAttribute('aria-hidden', String(!next));
+    handle.setAttribute('aria-expanded', String(next));
+
+    const chevron = handle.querySelector('.chevron');
+    if (chevron) {
+      chevron.textContent = next ? '⌄' : '⌃';
+    }
+  }
+
+  handle.addEventListener('click', (e) => {
+    e.stopPropagation(); // don’t trigger your click-outside logic
+    const isOpen = drawer.classList.contains('is-open');
+    setOpen(!isOpen);
+  });
+
+  // Close footer drawer with Escape (without breaking panels)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      setOpen(false);
+    }
+  });
+
+  // Gentle, occasional nudge (only when closed)
+  function scheduleNudge() {
+    const delay = 45000 + Math.random() * 45000; // 45–90s
+    setTimeout(() => {
+      if (!drawer.classList.contains('is-open')) {
+        handle.classList.remove('is-nudging');
+        void handle.offsetWidth; // restart animation
+        handle.classList.add('is-nudging');
+      }
+      scheduleNudge();
+    }, delay);
+  }
+
+  scheduleNudge();
+})();
+
