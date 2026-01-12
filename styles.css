@@ -634,7 +634,7 @@ nav a.is-active {
 .footer-mid .ack {
   margin: 0;
   text-align: center;
-  font-size: 12px;
+  font-size: 8px;
   line-height: 1.6;
   opacity: 0.9;
   max-width: 56ch;
@@ -722,14 +722,14 @@ nav a.is-active {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 4px;
+    font-size: 8px;
   }
 
   .footer-mid .ack {
     width: 100%;
     max-width: none;
     text-align: center; /* or left */
-    font-size: 4px;
+    font-size: 8px;
   }
 
   /* 3) Meta third (side-by-side row) */
