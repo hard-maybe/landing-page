@@ -654,7 +654,7 @@ column-gap: 0; /* we’re using explicit buffer columns instead */
   grid-template-columns: repeat(2, 10ch);  /* ✅ fixed columns (tweak 9–12ch) */
   column-gap: 18px;
   row-gap: 10px;
-  grid-column: 5;
+  grid-column: auto;
 
   justify-content: end;
   align-content: end;
@@ -697,6 +697,13 @@ column-gap: 0; /* we’re using explicit buffer columns instead */
   transform: scale(1.12);        /* 🔑 visual growth only */
   transform-origin: left center; /* keeps it anchored */
 }
+
+.footer-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 
 
 @media (max-width: 820px) {
