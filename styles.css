@@ -722,14 +722,14 @@ nav a.is-active {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 8px;
+    font-size: 4px;
   }
 
   .footer-mid .ack {
     width: 100%;
     max-width: none;
     text-align: center; /* or left */
-    font-size: 8px;
+    font-size: 4px;
   }
 
   /* 3) Meta third (side-by-side row) */
