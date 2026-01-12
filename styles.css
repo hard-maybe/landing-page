@@ -549,8 +549,10 @@ nav a.is-active {
     inset 0 0 0 1px rgba(255,255,255,0.08);
 
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 14px;
+/* 25% | 5% | 40% | 5% | 25% */
+grid-template-columns: 25% 5% 40% 5% 25%;
+column-gap: 0; /* we’re using explicit buffer columns instead */
+
 
   align-items: end; /* bottom-align the three columns */
 }
@@ -590,6 +592,7 @@ nav a.is-active {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
+  grid-column: 1;
   gap: 10px;
 }
 
@@ -624,23 +627,26 @@ nav a.is-active {
   transition: color 3.5s ease;
 }
 
-/* MID: acknowledgement bottom-center */
+/* MID: acknowledgement bottom-center (true 40%) */
 .footer-mid {
+  grid-column: 3;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
 .footer-mid .ack {
-  margin: 0;
+  width: 100%;
+  max-width: none;          /* 🔑 allow full 40% */
   text-align: center;
   font-size: 8px;
   line-height: 1.6;
   opacity: 0.9;
-  max-width: 56ch;
   color: inherit;
   transition: color 3.5s ease;
 }
+
 
 /* RIGHT: links in 2 columns */
 .footer-links {
@@ -648,6 +654,7 @@ nav a.is-active {
   grid-template-columns: repeat(2, 10ch);  /* ✅ fixed columns (tweak 9–12ch) */
   column-gap: 18px;
   row-gap: 10px;
+  grid-column: 5;
 
   justify-content: end;
   align-content: end;
@@ -699,10 +706,10 @@ nav a.is-active {
     flex-direction: column;
     gap: 18px;
     align-items: stretch;
-    padding: 44px 16px 16px; /* space for close chevron */
+    padding: 44px 16px 16px;
   }
 
-  /* 1) Icons row first */
+  /* 1) ICONS */
   .footer-left {
     order: 1;
     width: 100%;
@@ -715,31 +722,42 @@ nav a.is-active {
     width: 100%;
   }
 
-  /* 2) Ack second, full width */
+  /* Hide meta inside footer-left on mobile */
+  .footer-left .footer-meta {
+    display: none;
+  }
+
+  /* 2) ACK */
   .footer-mid {
     order: 2;
     width: 100%;
     display: flex;
     justify-content: center;
-    text-align: center;
-    font-size: 8px;
   }
 
   .footer-mid .ack {
     width: 100%;
     max-width: none;
-    text-align: center; /* or left */
+    text-align: center;
     font-size: 8px;
   }
 
-  /* 3) Meta third (side-by-side row) */
-  .footer-meta {
+  /* 3) LINKS */
+  .footer-links {
     order: 3;
-    width: 100%;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: repeat(2, 10ch);
+    row-gap: 12px;
+  }
+
+  /* 4) META (reintroduced at the bottom) */
+  .footer-meta {
+    order: 4;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: left;
+    width: 100%;
     font-size: 11px;
   }
 
@@ -747,20 +765,8 @@ nav a.is-active {
     margin-top: 0;
     text-align: right;
   }
-
-  /* 4) Links last (2 columns) */
-  .footer-right {
-    order: 4;
-    width: 100%;
-  }
-
-  .footer-links {
-    justify-content: center;
-    justify-items: center;
-    grid-template-columns: repeat(2, 10ch);
-    row-gap: 12px;
-  }
 }
+
 
 
 
